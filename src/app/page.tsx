@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <div>
       <CustomMap />
-      <h1>hello</h1>
     </div>
   );
 }

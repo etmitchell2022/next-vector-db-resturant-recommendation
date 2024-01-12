@@ -2,6 +2,15 @@ import { useState, useEffect } from 'react';
 import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Suspense } from 'react';
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from './ui/card';
+import { Badge } from './ui/badge';
 
 type ViewPort = {
   latitude: number;
@@ -41,10 +50,37 @@ function CustomMap() {
               latitude={viewport.latitude}
             />
           </Map>
-          <div className='backdrop-blur-md bg-white/30 p-8 w-[32rem] absolute top-10 right-10 h-3/6 rounded-lg'>
-            <h1>
-              Your Location: {`${viewport.latitude}, ${viewport.longitude}`}
-            </h1>
+          <div className='backdrop-blur-md bg-white/30 p-4 absolute inset-y-0 right-0 w-96 h-6/6 text-center text-white flex flex-col align-center'>
+            <Card className='m-2'>
+              <CardHeader>
+                <CardTitle>Half Liter</CardTitle>
+                <CardDescription>500ft</CardDescription>
+              </CardHeader>
+              <CardContent className='flex flex-row justify-center'>
+                <Badge className='m-2'>BBQ</Badge>
+                <Badge className='m-2'>$$</Badge>
+              </CardContent>
+            </Card>
+            <Card className='m-2'>
+              <CardHeader>
+                <CardTitle>Half Liter</CardTitle>
+                <CardDescription>500ft</CardDescription>
+              </CardHeader>
+              <CardContent className='flex flex-row justify-center'>
+                <Badge className='m-2'>BBQ</Badge>
+                <Badge className='m-2'>$$</Badge>
+              </CardContent>
+            </Card>
+            <Card className='m-2'>
+              <CardHeader>
+                <CardTitle>Half Liter</CardTitle>
+                <CardDescription>500ft</CardDescription>
+              </CardHeader>
+              <CardContent className='flex flex-row justify-center'>
+                <Badge className='m-2'>BBQ</Badge>
+                <Badge className='m-2'>$$</Badge>
+              </CardContent>
+            </Card>
           </div>
         </div>
       )}
