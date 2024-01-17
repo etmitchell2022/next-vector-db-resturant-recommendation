@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  images: {
+    domains: ['s3-media4.fl.yelpcdn.com', 'localhost'],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
