@@ -6,6 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import MapLoader from './mapLoader';
 import { useGetRestaurants } from '@/hooks/useGetRestaurants';
 import { RestaurantCard } from './restaurantCard';
+import { RestaurantTypes } from '@/types/restaurant';
 
 type ViewPort = {
   latitude: number;
@@ -15,9 +16,16 @@ type ViewPort = {
 
 function CustomMap() {
   const [viewport, setViewport] = useState<ViewPort>();
+  const [selectedRestaurant, setSelectedRestaurant] =
+    useState<RestaurantTypes>();
 
   const { data: restaurants } = useGetRestaurants();
   console.log('restaurants', restaurants);
+
+  const handleMarkerClick = (restaurant: RestaurantTypes) => {
+    console.log('marker', restaurant.alias);
+    setSelectedRestaurant(restaurant);
+  };
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -56,6 +64,12 @@ function CustomMap() {
                 key={index + 30}
                 latitude={restaurant.coordinates.latitude}
                 longitude={restaurant.coordinates.longitude}
+                onClick={() => handleMarkerClick(restaurant)}
+                color={
+                  selectedRestaurant?.alias === restaurant.alias
+                    ? 'white'
+                    : 'green'
+                }
               />
             ))}
           </Map>

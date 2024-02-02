@@ -7,4 +7,5 @@ export type RestaurantTypes = {
   distance: number;
   categories: [{ alias: string; title: string }];
   image_url: string;
+  alias: string;
 };

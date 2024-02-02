@@ -21,8 +21,8 @@ export const RestaurantCard: React.FC<RestaurantCardProps> = ({
   restaurant,
 }) => {
   const distanceFromUser = calculateDistanceBetweenPoints(
-    39.7715642,
-    -86.1546502,
+    39.8487178,
+    -86.1411185,
     restaurant.coordinates.latitude,
     restaurant.coordinates.longitude
   );
