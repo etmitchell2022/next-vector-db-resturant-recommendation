@@ -16,9 +16,9 @@ export const ReviewForm: React.FC<ReviewFormTypes> = ({
   return (
     <div className='flex flex-col w-full'>
       <div>
-        <h1 className='text-lg font-bold'>Rate your lunch:</h1>
+        <h1 className='text-lg h-1/6 font-bold'>Rate your lunch:</h1>
       </div>
-      <div className='flex h-1/6 flex-row items-center py-3'>
+      <div className='flex h-1/6 flex-row items-center'>
         <div className='mr-2'>
           <p className='font-medium text-lg'>{rating}</p>
         </div>
@@ -53,7 +53,7 @@ export const ReviewForm: React.FC<ReviewFormTypes> = ({
           <Input id='name' type='text' placeholder='Name...' />
         </div>
       </div>
-      <div className='flex w-full h-2/6 justify-start items-end '>
+      <div className='flex w-full h-2/6 justify-start mt-3 items-end '>
         <Button variant='default'>Submit Lunch Review</Button>
       </div>
     </div>

@@ -6,9 +6,16 @@ import { ReviewForm } from '@/components/ui/dashboard/reviewForm';
 import { AttendeesList } from '@/components/ui/dashboard/attendeesList';
 import Image from 'next/image';
 import { Rating } from '@mui/material';
+import { Countdown } from '@/components/ui/dashboard/countdown';
+import { Button } from '@/components/ui/button';
+import { DateVoteTable } from '@/components/ui/dashboard/dateVoteTable';
+
+import { AddDateDialog } from '@/components/ui/dashboard/addDateDialog';
 
 export default function Home() {
   const [rating, setRating] = useState<number>(2);
+  const [date, setDate] = useState<Date>();
+
   const trips = [
     {
       Date: '2023-01-15',
@@ -66,25 +73,55 @@ export default function Home() {
     { name: 'Test', rating: '3' },
     { name: 'User', rating: '3.5' },
   ];
+
+  const voteDates = [
+    { date: 'Friday, March 8', votes: 4 },
+    { date: 'Monday, March 11', votes: 2 },
+    { date: 'Tuesday, March 12', votes: 1 },
+  ];
   return (
-    <div className=' flex flex-row w-screen h-screen relative pl-24'>
+    <div className=' flex flex-row w-screen h-auto relative pl-24'>
       <div className='flex flex-col gap-4 m-4 w-4/6'>
         <div className='w-full flex justify-center content-center border-2 border-gray-200 min-h-72 rounded-md'>
           <div className='w-full'>
             <TripTable trips={trips} />
           </div>
         </div>
-        <div className='flex flex-row gap-4'>
-          <div className='basis-1/2 border-2 border-gray-200 min-h-48 rounded-md'>
-            Days until next lunch tour
+        <div className='flex flex-col h-6/12 gap-4'>
+          <div className='flex w-6/12 border-2 border-gray-200 min-h-48 rounded-md p-2'>
+            <Countdown targetDate='2024-12-31T00:00:00' />
           </div>
-          <div className='basis-1/2 border-2 border-gray-200 min-h-48 rounded-md'>
-            Vote for next lunch tour date
+          <div className='flex flex-col w-6/12 border-2 border-gray-200 min-h-48 rounded-md p-2'>
+            <div className='flex flex-col h-4-6 w-full bg-gray-200 rounded-md'>
+              <DateVoteTable dateItems={voteDates} />
+            </div>
+            <div className='flex flex-col h-2/6'>
+              <div className='flex flex-row w-full justify-center p-2 '>
+                <div className='flex w-5/12 justify-end items-center'>
+                  <hr className='border-0 w-full border-t border-gray-200' />
+                </div>
+                <div className='flex w-1/12 justify-center items-center'>
+                  <p className='text-sm'>Or</p>
+                </div>
+                <div className='flex w-5/12 justify-start items-center'>
+                  <hr className='border-0 w-full border-t border-gray-200' />
+                </div>
+              </div>
+              <div className='flex justify-center'>
+                <div className='flex'>
+                  <AddDateDialog setDateToAdd={setDate} dateToAdd={date}>
+                    <Button className='h-8 text-sm' size='sm'>
+                      Add date
+                    </Button>
+                  </AddDateDialog>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className='flex flex-col items-center m-4 w-2/6 border-2 border-gray-200 rounded-md ease-in-out duration-300'>
-        <div className='flex w-5/6 h-2/6 p-4 m-4 bg-gray-200 rounded-md'>
+      <div className='flex flex-col items-center m-4 w-2/6 h-full border-2 border-gray-200 rounded-md overflow-auto'>
+        <div className='flex w-5/6 h-2/6 p-4 m-2 bg-gray-200 rounded-md'>
           <div className='flex flex-col h-full w-full'>
             <div className='flex mb-1'>
               <h1 className='text-lg font-bold'>Last Visit</h1>
@@ -93,8 +130,8 @@ export default function Home() {
               <Image
                 className='rounded-md'
                 src='/food.jpg'
-                width={500}
-                height={500}
+                width={300}
+                height={300}
                 alt='Picture of the restaurant'
               />
             </div>
@@ -120,12 +157,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='flex w-5/6 h-auto p-4 m-4 bg-gray-200 rounded-md'>
+        <div className='flex w-5/6 h-auto p-4 m-2 bg-gray-200 rounded-md'>
           <div className='flex flex-col h-full w-full overflow-auto'>
             <AttendeesList attendees={attendees} />
           </div>
         </div>
-        <div className='flex w-5/6 h-2/6 p-4 m-4 bg-gray-200 rounded-md'>
+        <div className='flex w-5/6 h-auto p-4 m-2 bg-gray-200 rounded-md'>
           <ReviewForm rating={rating} setRating={setRating} />
         </div>
       </div>
